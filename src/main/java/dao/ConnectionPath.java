@@ -3,10 +3,10 @@ package dao;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class DBToConnect {
+public class ConnectionPath {
     private final String filePathProperties;
 
-    public DBToConnect(String filePathProperties) {
+    public ConnectionPath(String filePathProperties) {
         this.filePathProperties = filePathProperties;
     }
 

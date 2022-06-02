@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class SQLConnect {
     private final String path = "src/main/resources/connection.properties";
-    private final DBToConnect connectionDB = new DBToConnect(path);
+    private final ConnectionPath connectionDB = new ConnectionPath(path);
     private final DBPath connectionPath = connectionDB.getConnectionPath();
     private final Logger logger = Logger.getLogger(Logger.class.getName());
 
