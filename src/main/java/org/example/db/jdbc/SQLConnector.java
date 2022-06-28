@@ -1,11 +1,12 @@
-package db.jdbc;
+package org.example.db.jdbc;
+
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.logging.Logger;
 
 public class SQLConnector {
-    private final Logger logger = Logger.getLogger(this.getClass().getName());
+    private static final Logger log = Logger.getLogger(SQLConnector.class);
     private final DBSettings dbSettings;
 
     public SQLConnector(DBSettings dbSettings) {
@@ -14,15 +15,14 @@ public class SQLConnector {
 
     public Connection getConnection() {
         try {
-            logger.info("Connect");
+            log.info("Connect");
             Class.forName(dbSettings.getDbDriver());
             return DriverManager.getConnection(
                     dbSettings.getDbUrl(),
                     dbSettings.getDbUser(),
                     dbSettings.getDbPassword());
-        } catch (Exception exception) {
-            logger.warning("Not connected");
-            exception.printStackTrace();
+        } catch (Exception e) {
+            log.error("Not connected", e);
             throw new RuntimeException("Not connected");
         }
     }

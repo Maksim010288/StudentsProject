@@ -1,4 +1,4 @@
-package dto;
+package org.example.service.dto;
 
 import java.util.StringJoiner;
 
@@ -15,7 +15,7 @@ public class StudentDTO {
         this.course = course;
     }
 
-    public StudentDTO(String lastName, String firstName, int course) {
+    public StudentDTO(String firstName, String lastName, int course) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.course = course;

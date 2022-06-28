@@ -1,7 +1,7 @@
-package ui;
+package org.example.ui;
 
-import db.jdbc.StudentsDAO;
-import dto.StudentDTO;
+import org.example.service.StudentService;
+import org.example.service.dto.StudentDTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,14 +10,14 @@ import java.awt.event.ActionListener;
 import java.util.Collection;
 
 public class SearchWindow extends JFrame {
-    StudentsDAO studentsDAO;
-    JLabel label = new JLabel("Ввеліть імя");
+    StudentService studentService;
+    JLabel label = new JLabel("Введіть імя");
     JTextField field = new JTextField(20);
     JButton button = new JButton("Пошук");
     JTextArea outLabel = new JTextArea(20, 20);
 
-    public SearchWindow(StudentsDAO studentsDAO) {
-        this.studentsDAO = studentsDAO;
+    public SearchWindow(StudentService studentService) {
+        this.studentService = studentService;
         this.setTitle("пошук по імені");
         this.setBounds(10, 90, 500, 400);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -36,15 +36,15 @@ public class SearchWindow extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Collection<StudentDTO> students = studentsDAO.findByFirstName(field.getText());
+            Collection<StudentDTO> students = studentService.findByFirstName(field.getText());
             if (e.getSource() == button) {
+                field.setText(null);
                 outLabel.setText(null);
                 for (StudentDTO s : students) {
                     outLabel.append(String.format("%s. %s %s\n",
                             s.getId(),
                             s.getFirstName(),
                             s.getLastName()));
-                    field.setText(null);
                 }
             }
         }

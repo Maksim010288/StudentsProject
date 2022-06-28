@@ -1,4 +1,4 @@
-package db.jdbc;
+package org.example.db.jdbc;
 
 public class DBSettings {
     private final String dbUrl;
@@ -27,5 +27,16 @@ public class DBSettings {
 
     public String getDbDriver() {
         return dbDriver;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("DBSettings{");
+        sb.append("dbUrl='").append(dbUrl).append('\'');
+        sb.append(", dbUser='").append("******").append('\'');
+        sb.append(", dbPassword='").append("******").append('\'');
+        sb.append(", dbDriver='").append(dbDriver).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

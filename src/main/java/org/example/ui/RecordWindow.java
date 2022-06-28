@@ -1,7 +1,7 @@
-package ui;
+package org.example.ui;
 
-import db.jdbc.StudentsDAO;
-import dto.StudentDTO;
+import org.example.service.StudentService;
+import org.example.service.dto.StudentDTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RecordWindow extends JFrame {
-    StudentsDAO studentsDAO;
+    StudentService studentService;
 
     protected JLabel firstName = new JLabel("Імя");
     protected JLabel lastName = new JLabel("Фамілія");
@@ -22,8 +22,8 @@ public class RecordWindow extends JFrame {
 
     protected JButton record = new JButton("Записати");
 
-    public RecordWindow(StudentsDAO studentsDAO) {
-        this.studentsDAO = studentsDAO;
+    public RecordWindow(StudentService studentService) {
+        this.studentService = studentService;
         this.setTitle("Record");
         this.setBounds(10, 120, 500, 200);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -55,7 +55,7 @@ public class RecordWindow extends JFrame {
             StudentDTO student = new StudentDTO(firstNameField.getText(), lastNameField.getText(),
                     Integer.parseInt(courseField.getText()));
             if (e.getSource() == record) {
-                studentsDAO.createStudent(student);
+                studentService.create(student);
                 lastNameField.setText(null);
                 firstNameField.setText(null);
                 courseField.setText(null);

@@ -1,26 +1,41 @@
-package db.orm.entity;
+package org.example.db.entity;
 
-import javax.persistence.*;
 
-@Entity(name = "students")
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "students")
 public class StudentEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "last_name")
-    private  String lastName;
+    private String lastName;
 
     @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "course")
     private int course;
 
-    public StudentEntity(){}
+    public StudentEntity() {
+    }
 
-    public StudentEntity(String lastName, String firstName, int course) {
+    public StudentEntity(String firstName, String lastName, int course) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.course = course;
+    }
+
+    public StudentEntity(int id, int course, String lastName, String firstName) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.course = course;
+    }
+
+    public StudentEntity(int course, String lastName, String firstName) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.course = course;
